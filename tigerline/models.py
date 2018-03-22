@@ -5,8 +5,6 @@ class Zipcode(models.Model):
     code = models.CharField(max_length=5, db_index=True)
     mpoly = models.MultiPolygonField()
 
-    objects = models.GeoManager()
-
     def __unicode__(self):
         return self.code
 
@@ -22,8 +20,6 @@ class State(models.Model):
     feature_class_code = models.CharField(max_length=5)
     functional_status = models.CharField(max_length=1)
     mpoly = models.MultiPolygonField()
-
-    objects = models.GeoManager()
 
     def __unicode__(self):
         return self.name
@@ -43,8 +39,6 @@ class County(models.Model):
     feature_class_code = models.CharField(max_length=5)
     functional_status = models.CharField(max_length=1)
     mpoly = models.MultiPolygonField()
-
-    objects = models.GeoManager()
 
     def state(self):
         my_state = State.objects.get(fips_code=self.state_fips_code)
